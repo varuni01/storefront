@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+
+
+
+{% load i18n %}
+<html>
+<head>
+<title>Localization Project</title>
+</head>
+<body>
+<h1>{% blocktrans %}{{ greeting }}{% endblocktrans %}</h1>
+<p>{% blocktrans with large_number=large_number %}Number: {{ large_number }}{% endblocktrans %}</p>
+<p>{% blocktrans with current_date=current_date %}Date: {{ current_date }}{% endblocktrans %}</p>
+<p>{% blocktrans %}This is an example paragraph{% endblocktrans %}</p>
+<p><span>{% trans "This is another example paragraph." %}</span></p>
+<p><span>{% trans "Your social networks and your location within them shape the kinds and amount of information that you have access to. Information is distinct from data, in that makes some kind of generalization about a person, thing, or population. Defensible generalizations about society can be either probabilities (i.e., statistics) or patterns (often from qualitative analysis). Such probabilities and patterns can be temporal, spatial, or simultaneous." %}</span></p>
+<p><span>{% trans "The struggle between proponents and critics in a scientific controversy is always a struggle for credibility. When scientists make claims which are literally ‘incredible’, as in the cold fusion case, they face an uphill struggle. The problem Pons and Fleischmann had to overcome was that they had credibility as electrochemists but not as nuclear physicists. And it was nuclear physics where their work was likely to have its main impact." %}</span></p>
+<form action="{% url 'set_language' %}" method="post">
+    {% csrf_token %}
+    <span>{% trans "Select language" %}</span>
+<input name="next" type="hidden" value="{{ redirect_to }}"/>
+<select id="language-select" name="language">
+<option value="en">{% trans "English" %}</option>
+<option value="es">{% trans "Spanish" %}</option>
+<option value="fr">{% trans "French" %}</option>
+</select>
+<input type="submit" value="{% trans 'Submit' %}"/>
+</form>
+</body>
+</html>
